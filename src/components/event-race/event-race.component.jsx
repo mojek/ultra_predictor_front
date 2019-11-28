@@ -1,27 +1,27 @@
 import React from "react";
-import { RaceContainer, RaceHeader, RaceContent, RaceContentElement } from "./EventRace.style";
-const eventRace = props => {
+import { RaceContainer, RaceHeader, RaceContent, RaceContentElement } from "./event-race.style";
+const eventRace = ({race}) => {
   return (
     <RaceContainer>
       <RaceHeader>
-        {props.race.start_date} {props.race.name}
+        {race.start_date} {race.name}
       </RaceHeader>
       <RaceContent>
         <RaceContentElement>
-          elevation: {props.race.elevation_increase}+/
-          {props.race.elevation_decrease}-
+          elevation: {race.elevation_increase}+/
+          {race.elevation_decrease}-
         </RaceContentElement>
         <RaceContentElement>
-          distance: {props.race.distance}km
+          distance: {race.distance}km
         </RaceContentElement>
         <RaceContentElement>
-          itra: {props.race.itra}
+          itra: {race.itra}
         </RaceContentElement>
         <RaceContentElement>
-          food points: {props.race.food_points}
+          food points: {race.food_points}
         </RaceContentElement>
         <RaceContentElement>
-          time limit: {props.race.time_limit}h
+          time limit: {race.time_limit}h
         </RaceContentElement>
       </RaceContent>
     </RaceContainer>

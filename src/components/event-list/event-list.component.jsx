@@ -1,12 +1,12 @@
 import React from "react";
-import Event from "./Event/Event";
-import { EventListContainer } from "./EventList.styles";
+import Event from "../event/event.component";
+import { EventListContainer } from "./event-list.styles";
 
 const eventList = props => {
   return (
     <EventListContainer>
       {props.events.map(event => (
-        <Event event={event} />
+        <Event key={event.id} event={event} />
       ))}
     </EventListContainer>
   );
