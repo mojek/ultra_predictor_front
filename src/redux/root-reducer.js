@@ -1,9 +1,9 @@
-import eventReducer from "./events";
-import isLoggedReducer from "./isLogged";
+import eventReducer from "./event/event.reducer";
+import userReducer from "./user/user.reducer";
 import { combineReducers } from "redux";
 
 const allReducers = combineReducers({
   events: eventReducer,
-  isLogged: isLoggedReducer
+  user: userReducer
 });
 export default allReducers;

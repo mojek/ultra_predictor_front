@@ -1,7 +1,7 @@
 import React from "react";
-
+import { connect } from "react-redux";
 import { SignInContainer } from "./sign-in.styles";
-
+import axios from "axios";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-buttom.component";
 
@@ -15,10 +15,20 @@ class SignIn extends React.Component {
   }
   handleSubmit = event => {
     event.preventDefault();
+    axios
+      .post("http://localhost:8000/api/auth/login", {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        console.log(error);
+      });
     this.setState({ email: "", password: "" });
   };
   handleChange = event => {
-    console.log(event.target);
     const { value, name } = event.target;
     this.setState({ [name]: value });
   };
@@ -53,5 +63,12 @@ class SignIn extends React.Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {};
+};
 
-export default SignIn;
+const mapDispatchToProps = dispatch => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

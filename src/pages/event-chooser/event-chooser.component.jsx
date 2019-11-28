@@ -1,17 +1,20 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { load_event } from "../../redux/event/event.actions";
 import EventList from "../../components/event-list/event-list.component";
-import { useSelector, useDispatch } from "react-redux";
-import {load_event} from  '../../redux/actions'
-
-const EventBuilder = () => {
-  const events = useSelector(state => state.events);
-  const dispatch = useDispatch()
-  return (
-    <div>
-      <EventList events={events} />
-      <button onClick={() => dispatch(load_event())}>Load events</button>
-    </div>
-  );
-};
-
-export default EventBuilder;
+class EventBuilder extends Component {
+  
+  componentDidMount() {
+    this.props.load_events();
+  }
+  render() {
+    return <EventList events={this.props.events} />;
+  }
+}
+const mapStateToProps = state => ({
+  events: state.events
+});
+const mapDispatchToProps = dispatch => ({
+  load_events: () => dispatch(load_event())
+});
+export default connect(mapStateToProps, mapDispatchToProps)(EventBuilder);
