@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import Aux from "../../hoc/Aux";
 import { Logo, MainContainer, Toolbar, MainMenu } from "./layout.style";
 import { connect } from "react-redux";
-import { selectUserInfo } from "../../redux/user/user.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { logOutUser } from "../../redux/user/user.actions";
 import { createStructuredSelector } from "reselect";
 
 const layout = props => (
@@ -15,27 +16,18 @@ const layout = props => (
         <span>Estimate your score in the next mountain run</span>
       </Logo>
       <MainMenu>
-        <ul>
-          {props.currentUser.isAuthenticated ? null : (
+        {props.currentUser.isAuthenticated ? (
+          <ul>
             <li>
-              <Link to="/">Sign In</Link>
+              <Link to="/settings">Settings</Link>
             </li>
-          )}
-          <li>
-            <Link to="/events">Events</Link>
-          </li>
-          <li>
-            <Link to="/settings">Settings</Link>
-          </li>
-          {props.currentUser.isAuthenticated ? (
             <li>
-              <Link to="/signout">
+              <span onClick={() => props.logOutUser()} href="#">
                 Sign out
-                <small>({props.currentUser.user_info.email})</small>
-              </Link>
+              </span>
             </li>
-          ) : null}
-        </ul>
+          </ul>
+        ) : null}
       </MainMenu>
     </Toolbar>
 
@@ -44,6 +36,11 @@ const layout = props => (
 );
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectUserInfo
+  currentUser: selectCurrentUser
 });
-export default connect(mapStateToProps)(layout);
+
+const mapDispatchToProps = dispatch => ({
+  logOutUser: () => dispatch(logOutUser())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(layout);

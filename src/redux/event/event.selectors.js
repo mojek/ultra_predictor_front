@@ -4,5 +4,5 @@ const selectEvent = state => state.events;
 
 export const selectEvents = createSelector(
     [selectEvent],
-    aa => aa
+    events => events
 )

@@ -45,3 +45,8 @@ export const loginUser = (email, password) => {
       });
   };
 };
+export const logOutUser = () => {
+  return dispatch => {
+    dispatch({ type: UserActionTypes.LOGOUT_SUCCESSFUL});
+  }
+}
