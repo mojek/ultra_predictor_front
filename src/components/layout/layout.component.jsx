@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Aux from "../../hoc/Aux";
 import { Logo, MainContainer, Toolbar, MainMenu } from "./layout.style";
 import { connect } from "react-redux";
+import { selectUserInfo } from "../../redux/user/user.selectors";
+import { createStructuredSelector } from "reselect";
 
 const layout = props => (
   <Aux>
@@ -14,7 +16,7 @@ const layout = props => (
       </Logo>
       <MainMenu>
         <ul>
-          {props.currentUser ? null : (
+          {props.currentUser.isAuthenticated ? null : (
             <li>
               <Link to="/">Sign In</Link>
             </li>
@@ -25,9 +27,14 @@ const layout = props => (
           <li>
             <Link to="/settings">Settings</Link>
           </li>
-          <li>
-            <Link to="/signout">Sign out</Link>
-          </li>
+          {props.currentUser.isAuthenticated ? (
+            <li>
+              <Link to="/signout">
+                Sign out
+                <small>({props.currentUser.user_info.email})</small>
+              </Link>
+            </li>
+          ) : null}
         </ul>
       </MainMenu>
     </Toolbar>
@@ -36,7 +43,7 @@ const layout = props => (
   </Aux>
 );
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectUserInfo
 });
 export default connect(mapStateToProps)(layout);

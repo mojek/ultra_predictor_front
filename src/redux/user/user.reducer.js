@@ -1,7 +1,7 @@
 import { UserActionTypes } from "./user.types";
 
 const INIT_STATE = {
-  token: localStorage.getItem("token"),
+  token: null,
   isAuthenticated: null,
   isLoading: true,
   user_info: null,
@@ -24,7 +24,7 @@ const userReducer = (state = INIT_STATE, action) => {
       return { ...state, isLoading: true };
 
     case UserActionTypes.LOGIN_SUCCESSFUL:
-      localStorage.setItem("token", action.data.token);
+      
       return {
         ...state,
         ...action.data,
@@ -36,7 +36,7 @@ const userReducer = (state = INIT_STATE, action) => {
     case UserActionTypes.AUTHENTICATION_ERROR:
     case UserActionTypes.LOGIN_FAILED:
     case UserActionTypes.LOGOUT_SUCCESSFUL:
-      localStorage.removeItem("token");
+      
       return {
         ...state,
         errors: action.data,
