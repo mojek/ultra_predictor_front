@@ -1,37 +1,60 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Aux from "../../hoc/Aux";
-import { Logo, MainContainer, Toolbar, MainMenu } from "./layout.style";
+import { Toolbar } from "./layout.style";
 import { connect } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { logOutUser } from "../../redux/user/user.actions";
 import { createStructuredSelector } from "reselect";
+import logo from "./../../assets/logo.svg";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import Container from "react-bootstrap/Container";
 
 const layout = props => (
   <Aux>
     <Toolbar>
-      <Logo>
-        UltraDiviner
-        <br />
-        <span>Estimate your score in the next mountain run</span>
-      </Logo>
-      <MainMenu>
-        {props.currentUser.isAuthenticated ? (
-          <ul>
-            <li>
-              <Link to="/settings">Settings</Link>
-            </li>
-            <li>
-              <span onClick={() => props.logOutUser()} href="#">
-                Sign out
-              </span>
-            </li>
-          </ul>
-        ) : null}
-      </MainMenu>
+      <Container>
+        <Navbar expand="lg">
+          <Navbar.Brand>
+            <img src={logo} alt="logo" />
+          </Navbar.Brand>
+          {props.currentUser.isAuthenticated ? (
+            <Aux>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="ml-auto">
+                  <Nav.Link to="/settings">Ustawienia</Nav.Link>
+                  <Nav.Link onClick={() => props.logOutUser()} href="#">
+                    Wyloguj się
+                  </Nav.Link>
+                </Nav>
+              </Navbar.Collapse>
+            </Aux>
+          ) : null}
+        </Navbar>
+      </Container>
+      {/* <Header>
+        <Logo>
+         
+        </Logo>
+        <MainMenu>
+          {props.currentUser.isAuthenticated ? (
+            <ul class="nav">
+              <li className="nav-item">
+                <Link className="nav-link" to="/settings">Ustawienia</Link>
+              </li>
+              <li className="nav-item">
+                <span className="nav-link" onClick={() => props.logOutUser()} href="#">
+                  Wyloguj
+                </span>
+              </li>
+            </ul>
+          ) : null}
+        </MainMenu>
+      </Header> */}
     </Toolbar>
 
-    <MainContainer>{props.children}</MainContainer>
+    <Container>{props.children}</Container>
   </Aux>
 );
 

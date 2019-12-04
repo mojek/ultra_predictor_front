@@ -3,5 +3,5 @@ export const theme = {
   dark: "#272932",
   white: "#fff",
   lightgrey: "#d6d4d4",
-  container_width: '100%',
+  container_width: '1024px',
 };
