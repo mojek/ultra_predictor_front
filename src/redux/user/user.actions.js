@@ -21,7 +21,13 @@ export const loadUser = () => {
             });
           }
         })
-        .catch(error => {});
+        .catch(error => {
+          dispatch({
+            type: UserActionTypes.AUTHENTICATION_ERROR,
+            
+          });
+          
+        });
     }
   };
 };

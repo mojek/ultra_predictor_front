@@ -23,8 +23,8 @@ const layout = props => (
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                  <Nav.Link to="/settings">Ustawienia</Nav.Link>
-                  <Nav.Link onClick={() => props.logOutUser()} href="#">
+                  <Nav.Link className="text-sm-center" to="/settings">Ustawienia</Nav.Link>
+                  <Nav.Link className="text-sm-center" onClick={() => props.logOutUser()} href="#">
                     Wyloguj się
                   </Nav.Link>
                 </Nav>
