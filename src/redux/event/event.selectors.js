@@ -6,18 +6,15 @@ export const selectEvents = createSelector(
   [selectEvent],
   eventState => eventState.data
 );
-// const searchRace = (race_id, events) => {
-//   events.data.find(event => {
-//     return event.races.some(race => {
-//        console.log(race, race_id);
-//       return race.id === race_id;
-//     });
-//   });
-// };
+
+export const selectEventLoadingStatus = createSelector(
+  [selectEvent],
+  eventState => eventState.isLoading
+);
 
 const searchRace = (race_id, events) => {
-  for (const easd of events.data) {
-    for (const race of easd.races) {
+  for (const event of events.data) {
+    for (const race of event.races) {
       const race_found = race.id === race_id ? race : null;
       return race_found;
     }

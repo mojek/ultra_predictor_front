@@ -4,6 +4,7 @@ import { EventActionTypes } from "./event.types";
 export const loadEvents = () => {
   return (dispatch, getState) => {
     const token = getState().user.token;
+    
     let headers = {};
     if (token) {
       dispatch({ type: EventActionTypes.EVENTS_LOADING });
@@ -21,3 +22,5 @@ export const loadEvents = () => {
     }
   };
 };
+
+

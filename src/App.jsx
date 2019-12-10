@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Layout from "./components/layout/layout.component";
 import EventChooserPage from "./pages/event-chooser/event-chooser.component";
 import SigninAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
-import RacePage from './pages/race-page/race-page.component'
+import RacePage from "./pages/race-page/race-page.component";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme.styled";
 import { loadUser } from "./redux/user/user.actions";
@@ -42,13 +42,12 @@ class App extends Component {
                 )
               }
             />
-             <Route
+            <Route
               exact
               path="/race/:id"
-              
-              render={(props) =>
+              render={props =>
                 this.props.currentUser.isAuthenticated ? (
-                  <RacePage {...props}/>
+                  <RacePage {...props} />
                 ) : (
                   <Redirect to="/" />
                 )

@@ -1,0 +1,5 @@
+export const PredictionActionTypes = {
+    PREDICTION_LOADING: "PREDICTION_LOADING",
+    PREDICTION_LOADED: "PREDICTION_LOADED",
+  };
+  

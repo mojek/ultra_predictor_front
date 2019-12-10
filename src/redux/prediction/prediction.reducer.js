@@ -1,14 +1,15 @@
-import { EventActionTypes } from "./event.types";
+import { PredictionActionTypes } from "./prediction.types";
 
 const INIT_STATE = {
   isLoading: false,
   data: []
 };
-const eventReducer = (state = INIT_STATE, action) => {
+
+const predictionReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
-    case EventActionTypes.EVENTS_LOADING:
+    case PredictionActionTypes.PREDICTION_LOADING:
       return { ...state, isLoading: true };
-    case EventActionTypes.EVENTS_LOADED:
+    case PredictionActionTypes.PREDICTION_LOADED:
       return {
         ...state,
         isLoading: false,
@@ -20,4 +21,4 @@ const eventReducer = (state = INIT_STATE, action) => {
   }
 };
 
-export default eventReducer;
+export default predictionReducer;
